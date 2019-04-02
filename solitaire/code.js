@@ -63,7 +63,6 @@ function PlayingDeck(cardsKit) {
 
 function Deck(cardKits) { // cards kit is array of objects like this [{number: 1, suit: 0, color: 0}, {number: 6, suit: 1, color: 1}]
 	this.cards = [];
-
 	this.$el = document.createElement('div');
 	this.$wrapper = document.createElement('div');
 
@@ -204,6 +203,7 @@ Game.prototype = {
 		let selectedDeck = null;
 		let selectedCards = [];
 
+		// aconsole.log("onDeckClick");
 		return function(e) {
 			let deck = e.detail.deck;
 			let cards = e.detail.cards;
@@ -243,13 +243,14 @@ Deck.prototype = {
 
 	registerEvents: function() {
 		this.$el.addEventListener('card.click', this.onCardClick.bind(this));
+		console.log(this);
 	},
 
 	onCardClick: function(e) {
 		let cardIndex = this.cards.indexOf(e.detail.card);
 		let cards = this.cards.slice(cardIndex);
 
-		this.cards.forEach((card) => card.unselect());
+		// this.cards.forEach((card) => card.unselect());
 		cards.forEach((card) => card.select());
 
 		this.$el.dispatchEvent(new CustomEvent('deck.click', {
