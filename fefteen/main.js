@@ -83,7 +83,6 @@
         var index = target.getAttribute('data-index');
         
         if (index) {
-            console.log('click')
             e.preventDefault();
             checkPosition(index);
         }
