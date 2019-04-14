@@ -1,0 +1,45 @@
+.wrapper {
+    margin: 40px auto;
+}
+.button-hold {
+    display: flex;
+    justify-content: center;
+    width: 400px;
+    margin: 0 auto 15px;
+}
+
+.button-hold button {
+    font-size: 18px;
+    font-weight: bold;
+    background: purple;
+    color: aliceblue;
+    padding: 15px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#table,
+#tableSecond {
+    margin: 0 auto;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+.cell{
+    border: 2px solid black;
+    width: 30px;
+    height: 30px; 
+}
+
+.button{
+    width: 200px;
+    margin: 15px auto;
+    font-size: 22px;
+    font-weight: bold;
+    background: green;
+    color: aliceblue;
+    padding: 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    display: block;
+}
