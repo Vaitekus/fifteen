@@ -4,18 +4,31 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link href="main.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
     <title>carousel</title>
 </head>
 <body>
   <div class="wrapper">
-      <div class="button-hold">
-          <button id="generateGrid">Generate</button>
-        </div>
-      <table id="table">
-      </table>
-      <button id="findPath" class="button">Find path</button>
-      <table id="tableSecond">
-      </table>
+    <h1>Мои работы</h1>
+    <div class="carousel">
+      <div class="mask">
+          <div class="slideset">
+              <div class="slide">
+                <strong>01</strong>
+                <h2>Пятнашки</h2>
+                <img src="images/img01.jpg" alt="Пятнашки" width="" height="">
+                <p>Перемещая костяшки по коробке, добиться упорядочивания их по номерам, желательно сделав как можно меньше перемещений.</p>
+              </div>
+              <div class="slide">Slide 2</div>
+              <div class="slide">Slide 3</div>
+              <div class="slide">Slide 4</div>
+              <div class="slide">Slide 5</div>
+          </div>
+      </div>
+      <a href="#" class="btn-prev">Prev</a>
+      <a href="#" class="btn-next">Next</a>
+      <div class="pagination"></div>
+  </div>
   </div>
 </body>
 <script src="main.js"></script>

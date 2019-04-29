@@ -1,45 +1,38 @@
+html {
+    height: 100%;
+}
+body{
+    height: 100%;
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient( 135deg, #feffb6 30%, #cfcece 0, #cfcece 50%, #feffb6 0, #fff 0%, #fff 0 );
+}
 .wrapper {
-    margin: 40px auto;
-}
-.button-hold {
-    display: flex;
-    justify-content: center;
-    width: 400px;
-    margin: 0 auto 15px;
+    max-width: 90%;
+    margin: 100px auto;
 }
 
-.button-hold button {
-    font-size: 18px;
-    font-weight: bold;
-    background: purple;
-    color: aliceblue;
-    padding: 15px;
-    cursor: pointer;
-    border-radius: 5px;
+h1{
+    font-size: 40px;
+    line-height: 56px;
+    font-weight: 700;
+    margin-bottom: 50px;
+}
+.carousel {
+    position: relative;
 }
 
-#table,
-#tableSecond {
-    margin: 0 auto;
-    table-layout: fixed;
-    border-collapse: collapse;
+.carousel .mask {
+    position: relative;
+    overflow: hidden;
+    width: 600px;
 }
 
-.cell{
-    border: 2px solid black;
-    width: 30px;
-    height: 30px; 
+.carousel .slideset {
+    width: 99999px;
+    float: left;
 }
 
-.button{
-    width: 200px;
-    margin: 15px auto;
-    font-size: 22px;
-    font-weight: bold;
-    background: green;
-    color: aliceblue;
-    padding: 15px;
-    cursor: pointer;
-    border-radius: 5px;
-    display: block;
+.carousel .slide {
+    width: 600px;
+    float: left;
 }
