@@ -18,6 +18,7 @@ function Carousel() {
 	this.$mask = document.getElementsByClassName('mask');
   this.$slideset = document.getElementsByClassName('slideset');
   this.$slides = document.getElementsByClassName('slide');
+  this.$describesItems = document.getElementsByClassName('describe__item');
 
   this.currentStep = CAROUSEL_SETTINGS.currentStep;
 
@@ -31,6 +32,19 @@ Carousel.prototype = {
     this.addButtons();
     this.calculateOffsets();
     this.refreshDisabledState();
+    this.displayDescriptionItems();
+  },
+
+  displayDescriptionItems: function() {
+    let descriptionCount = this.$describesItems.length - 1;
+    this.DescriptionItemsArray = [];
+
+    while (descriptionCount > 0) {
+      this.DescriptionItemsArray.push(this.$describesItems[descriptionCount]);
+      descriptionCount--;
+    }
+    this.DescriptionItemsArray.reverse();
+    this.$describesItems[0].style.display = 'flex';
   },
 
   setSlideWidth: function() {
@@ -38,12 +52,12 @@ Carousel.prototype = {
     const slideWidth =  Math.round(maskSize / CAROUSEL_SETTINGS.visibleSlide);
 
     for (var i = 0; i < this.$slides.length; i++) {
-      this.$slides[i].style.width = slideWidth +"px";
+      this.$slides[i].style.width = slideWidth + 'px';
     }
   },
 
   addButtons: function() {
-    if(true) {
+    if(this.$slides.length > CAROUSEL_SETTINGS.visibleSlide) {
       this.$prev = document.createElement('a');
       this.$prev.setAttribute('class', 'slide__btn slide__btn--prev');
       this.$prev.setAttribute('href', '#');
@@ -53,8 +67,7 @@ Carousel.prototype = {
       this.$next.setAttribute('class', 'slide__btn slide__btn--next');
       this.$next.setAttribute('href', '#');
       this.$element[0].appendChild(this.$next);
-    }
-    
+    }  
   },
 
   calculateOffsets: function() {
@@ -79,7 +92,7 @@ Carousel.prototype = {
         this.stepsCount++;
       }
 
-      this.$slideset[0].style.marginLeft = this.stepOffsets[this.currentStep] +"px";
+      this.$slideset[0].style.transform = 'translateX('+ this.stepOffsets[this.currentStep] +'px)';
     }
   },
 
@@ -89,7 +102,7 @@ Carousel.prototype = {
     for (var i = 0; i < this.$slides.length; i++) {
       sum += this.$slides[i].offsetWidth
     }
-    this.$slideset[0].style.width = sum +"px";
+    this.$slideset[0].style.width = sum + 'px';
     return sum;
   },
 
@@ -108,11 +121,20 @@ Carousel.prototype = {
       event.stopPropagation();
       this.nextSlide();
     });
+
     this.$prev.addEventListener('click', (event) => {
       event.preventDefault();
       event.stopPropagation();
       this.prevSlide();
     });
+
+    for(let i = 0; i < this.$slides.length; i++) {
+      this.$slides[i].addEventListener('click', (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        this.onDescriptionClick(i);
+      });    
+    }
   },
   
   prevSlide: function() {
@@ -131,11 +153,11 @@ Carousel.prototype = {
 
   switchSlide: function() {
     this.tmpPosition = this.getStepOffset();
-    this.$slideset[0].style.marginLeft = this.tmpPosition +"px";
+    this.$slideset[0].style.transform = 'translateX('+ this.tmpPosition +'px)';
     this.refreshDisabledState();
   },
 
-  getStepOffset: function(step) {
+  getStepOffset: function() {
     if (typeof CAROUSEL_SETTINGS.step === 'number') {
       return this.stepOffsets[this.currentStep];
     } else {
@@ -154,6 +176,18 @@ Carousel.prototype = {
       this.$next.classList.add(CAROUSEL_SETTINGS.disabledClass);
     } else {
       this.$next.classList.remove(CAROUSEL_SETTINGS.disabledClass);
+    }
+  },
+
+  onDescriptionClick: function(index) {
+    this.$describesItems[0].style.display = 'none';
+
+    for (var i = 0; i < this.DescriptionItemsArray.length; i++) {
+      if (i === index) {
+        this.DescriptionItemsArray[i].style.display = 'flex';
+      } else {
+        this.DescriptionItemsArray[i].style.display = 'none';
+      }
     }
   }
 }
